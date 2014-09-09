@@ -40,7 +40,6 @@ post '/users' do
 				:password_confirmation => params[:password_confirmation])
 	if @user.save
 		session[:user_id] = @user.id
-		flash[:notice] = "Hello!"
 		redirect to('/')
 	else
 		flash.now[:errors] = @user.errors.full_messages
@@ -69,7 +68,10 @@ post '/sessions' do
 	end
 end
 
-
+delete '/sessions' do
+	session[:user_id] = nil
+	flash[:notice] = "Good bye!"
+end
 
 
 # run Sinatra::Application.run!
