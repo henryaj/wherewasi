@@ -12,37 +12,42 @@ feature 'recovering a password' do
 	end
 
 	scenario 'requesting a password reset token' do
-		visit '/sessions/new'
-		click_link 'Forgot password'
-		fill_in "email", with: "test@test.com"
-		click_button 'Request password reset'
+		request_reset_password
 		expect(page).to have_content("Your password reset token has been emailed to you")
 	end
 
 	scenario 'producing a password reset token' do
-		visit '/sessions/new'
-		click_link 'Forgot password'
-		fill_in "email", with: "test@test.com"
-		click_button 'Request password reset'
-
+		request_reset_password
 		user = User.first(:email => "test@test.com")
 		expect(user.password_token.class).to be(String)
 		expect(user.password_token.length).to be(10)
 	end
 
 	scenario 'when visiting the password reset link' do
-		visit '/sessions/new'
-		click_link 'Forgot password'
-		fill_in "email", with: "test@test.com"
-		click_button 'Request password reset'
+		request_reset_password
 
 		user = User.first(:email => "test@test.com")
 		token = user.password_token
-		puts "***" * 50
-		puts user.inspect
-		# puts token
 		visit "/users/reset_password/#{token}"
-		expect(page).to have_content("Hello, #{user.email}! Your password has been reset!")
+		expect(page).to have_content("Hello, #{user.email}! Please reset your password")
+	end
+
+	scenario "resetting the password" do 
+		request_reset_password
+		
+		user = User.first(:email => "test@test.com")
+		token = user.password_token
+		
+		visit "/users/reset_password/#{token}"
+		fill_in "new_password", with: "sheep"
+		fill_in :password_confirmation, :with => "sheep"
+		click_button "Confirm new password"
+		
+		visit "/"
+		fill_in 'email', :with => "test@test.com"
+		fill_in 'password', :with => "sheep"
+		click_button 'Sign in'
+		expect(page).to have_content("Welcome, #{user.email}")
 	end
 
 end

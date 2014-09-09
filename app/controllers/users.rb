@@ -31,6 +31,6 @@ end
 
 get "/users/reset_password/:token" do 
 	user = User.first(:password_token => params[:token])
-	return "Hello, #{user.email}! Your password has been reset!"
+	return "Hello, #{user.email}! Please reset your password"
 
 end
