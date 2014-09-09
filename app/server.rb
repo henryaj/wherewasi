@@ -2,9 +2,9 @@ require 'sinatra'
 require 'data_mapper'
 require 'sinatra/flash'
 
-require './lib/link'
-require './lib/tag'
-require './lib/user'
+require_relative './models/link'
+require_relative './models/tag'
+require_relative './models/user'
 require_relative 'data_mapper_setup'
 require_relative 'helpers/application'
 
