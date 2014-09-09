@@ -1,14 +1,12 @@
 require 'sinatra'
 require 'data_mapper'
+require 'sinatra/flash'
 
 require './lib/link'
 require './lib/tag'
 require './lib/user'
 require_relative 'data_mapper_setup'
 require_relative 'helpers/application'
-
-
-
 
 enable :sessions
 set :session_secret, 'super secret'
@@ -36,20 +34,23 @@ get '/tags/:text' do
 	erb :index
 end 
 
-get '/users/new' do
-	erb :"users/new"
-end
-
 post '/users' do
-	user = User.create(:email => params[:email],
+	@user = User.new(:email => params[:email],
 				:password => params[:password],
 				:password_confirmation => params[:password_confirmation])
-	session[:user_id] = user.id
-	redirect to '/'
+	if @user.save
+		session[:user_id] = @user.id
+		flash[:notice] = "Hello!"
+		redirect to('/')
+	else
+		flash.now[:notice] = "Sorry, your passwords don't match"
+		erb :"users/new"
+	end
 end
 
-
-
-
+get '/users/new' do
+	@user = User.new
+	erb :"users/new"
+end
 
 # run Sinatra::Application.run!

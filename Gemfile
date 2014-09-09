@@ -6,7 +6,7 @@ gem 'sinatra'
 gem 'capybara'
 gem 'database_cleaner'
 gem 'bcrypt-ruby'
-
+gem 'sinatra-flash'
 
 group :development, :test do 
 	gem "rspec"
