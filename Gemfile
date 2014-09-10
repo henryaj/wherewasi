@@ -7,6 +7,7 @@ gem 'capybara'
 gem 'database_cleaner'
 gem 'bcrypt-ruby'
 gem 'sinatra-flash'
+gem 'mailgun-ruby'
 
 group :development, :test do 
 	gem "rspec"

@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'data_mapper'
 require 'sinatra/flash'
-
+require 'mailgun'
 require_relative './models/link'
 require_relative './models/tag'
 require_relative './models/user'
