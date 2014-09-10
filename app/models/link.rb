@@ -9,5 +9,11 @@ class Link
 	property :title,	String
 	property :url,		String 
 
+	# preprocesses URL before saving to DB
+	before :save do
+		unless self.url.start_with?('http://') || self.url.start_with?('https://')
+			self.url = 'http://' + self.url
+		end
+	end
 
 end 

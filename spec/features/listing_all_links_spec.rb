@@ -3,10 +3,10 @@ require 'spec_helper'
 feature "User browses the list of links" do
 
   before(:each) {
-    Link.create(:url => "http://www.makersacademy.com",
+    Link.create(:url => "www.makersacademy.com",
                 :title => "Makers Academy", 
                 :tags => [Tag.first_or_create(:text => 'education')])
-    Link.create(:url => "http://www.google.com", 
+    Link.create(:url => "https://www.google.com", 
                 :title => "Google", 
                 :tags => [Tag.first_or_create(:text => 'search')])
     Link.create(:url => "http://www.bing.com", 
@@ -17,10 +17,26 @@ feature "User browses the list of links" do
                 :tags => [Tag.first_or_create(:text => 'education')])
   }
 
+
+
 	scenario "when opening the home page" do
 		visit '/'
 		expect(page).to have_content("Makers Academy")
 	end
+
+    scenario "when opening the home page" do
+        visit '/'
+        expect(page).to have_link("Makers Academy", href: "http://www.makersacademy.com")
+    end
+
+    scenario "when opening the home page" do
+        visit '/'
+        click_link("Google")
+        expect(page.status_code).to eq 200
+    end
+
+
+
 
 	scenario "filtered by a tag" do
 		visit '/tags/search'

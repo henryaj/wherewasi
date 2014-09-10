@@ -24,6 +24,13 @@ describe Link do
 			expect(Link.count).to eq(0)
 		end
 
+		it "should pre procces urls" do 
+			Link.create(:title => "Makers Academy",
+			:url => "www.makersacademy.com")
+			link = Link.first
+			expect(link.url).to eq("http://www.makersacademy.com")
+		end
+
 	end
 
 end
