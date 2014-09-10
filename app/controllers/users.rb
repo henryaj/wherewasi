@@ -18,14 +18,20 @@ end
 
 post '/users/reset_password' do 
 	email = params[:email]
-	user = User.first(:email => email)
-	user.password_token = (1..10).map{('A'..'Z').to_a.sample}.join
-	user.save
-	flash[:notice] = "Your password reset token has been emailed to you"
-	redirect to('/sessions/new')
+	if user = User.first(:email => email)
+		user.password_token = (1..10).map{('A'..'Z').to_a.sample}.join
+		user.save
+		mailer = Mailer.new
+		mailer.send_password_reset(user)
+		flash[:notice] = "Your password reset token has been emailed to you"
+		redirect to('/sessions/new')
+	else
+		redirect to('/sessions/new')
+		flash[:error] = "That user couldn't be found."
+	end
 end
 
-get '/users/reset_password' do 
+get '/users/reset_password' do
 	erb :"users/reset_password"
 end
 

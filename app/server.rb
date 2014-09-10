@@ -5,6 +5,7 @@ require 'mailgun'
 require_relative './models/link'
 require_relative './models/tag'
 require_relative './models/user'
+require_relative './mailers/mailer'
 require_relative 'data_mapper_setup'
 require_relative 'helpers/application'
 
