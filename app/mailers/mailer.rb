@@ -14,7 +14,7 @@ class Mailer
 					{:from => "noreply@wherewasi.com",
 					  :to => user.email,
 					  :subject => "Password reset token",
-					  :body => "Hi there #{user.email}. Your password reset token is #{user.password_token}."
+					  :text => "Hi there #{user.email}. Your password reset token is #{user.password_token}."
 					})		
 	end
 

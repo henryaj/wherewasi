@@ -20,7 +20,7 @@ describe Mailer do
 		message_params = {:from => "noreply@wherewasi.com",
 						  :to => "test@test.com",
 						  :subject => "Password reset token",
-						  :body => "Hi there test@test.com. Your password reset token is NVJFMRKDIJ."
+						  :text => "Hi there test@test.com. Your password reset token is NVJFMRKDIJ."
 						  }
 		sending_domain = "domaaaain"
 		expect(mailer.client).to receive(:send_message).with(mailer.sending_domain, message_params)
