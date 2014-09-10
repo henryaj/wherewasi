@@ -39,15 +39,17 @@ feature 'recovering a password' do
 		token = user.password_token
 		
 		visit "/users/reset_password/#{token}"
-		fill_in "new_password", with: "sheep"
-		fill_in :password_confirmation, :with => "sheep"
+		fill_in "new_password", with: "sheeps"
+		fill_in :password_confirmation, :with => "sheeps"
 		click_button "Confirm new password"
+
+		expect(User.authenticate("test@test.com", "sheeps")).to eq(user)
 		
-		visit "/"
-		fill_in 'email', :with => "test@test.com"
-		fill_in 'password', :with => "sheep"
-		click_button 'Sign in'
-		expect(page).to have_content("Welcome, #{user.email}")
+		# visit "/sessions/new"
+		# fill_in 'email', :with => "test@test.com"
+		# fill_in 'password', :with => "sheep"
+		# click_button 'Sign in'
+		# expect(page).to have_content("Welcome, #{user.email}")
 	end
 
 end

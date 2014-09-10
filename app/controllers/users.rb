@@ -31,6 +31,14 @@ end
 
 get "/users/reset_password/:token" do 
 	user = User.first(:password_token => params[:token])
-	return "Hello, #{user.email}! Please reset your password"
-
+	session[:user_id] = user.id
+	erb :"users/new_password"
 end
+
+post "/users/new_password" do 
+	current_user.password  = params[:new_password] 
+	current_user.password_confirmation = params[:password_confirmation]
+	current_user.save
+end
+
+
