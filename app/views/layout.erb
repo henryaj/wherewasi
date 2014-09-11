@@ -11,53 +11,53 @@
 	<header>
 		<div id="logo">Where Was I</div>
 		<% if current_user %>
-			<a href="/links/new" class="button highlighted">Add link</a>
+		<a href="/links/new" class="button highlighted">Add link</a>
 		<% else %>
-			<a href="/users/new" class="button highlighted">Sign up</a>
-			<a href="/sessions/new" class="button highlighted">Sign in</a>
+		<a href="/users/new" class="button highlighted">Sign up</a>
+		<a href="/sessions/new" class="button highlighted">Sign in</a>
 		<% end %>
 		<div id="user-links">
 			<% if current_user %>
-				<span id="welcome message">
-					Welcome, <%= current_user.email %>
-				</span>
+			<span id="welcome message">
+				Welcome, <%= current_user.email %>
+			</span>
 
-				<form id="sign-out" method="post" action="/sessions">
-					<input type="hidden" name="_method" value="delete">
-					<input type="submit" value="Sign Out">
-				</form>
+			<form id="sign-out" method="post" action="/sessions">
+				<input type="hidden" name="_method" value="delete">
+				<input type="submit" value="Sign Out">
+			</form>
 			<% else %>
 			<br>
 			<% end %>
-			</div>
+		</div>
 	</header>
-
-	<div id="container"> 
+	<div class="page-wrap">
+		<div id="container"> 
 			<% if flash[:errors] && !flash[:errors].empty? %>
-				Sorry, there were the following problems with the form.
-				<ul id="errors">
-					<% flash[:errors].each do |error| %>
-						<li><%= error %></li>
-					<% end %>
-				</ul>
+			Sorry, there were the following problems with the form.
+			<ul id="errors">
+				<% flash[:errors].each do |error| %>
+				<li><%= error %></li>
+				<% end %>
+			</ul>
 			<% end %>
 			<% if flash[:notice] %>
-				<div id="notice">
-					<%= flash[:notice] %>
-				</div>
+			<div id="notice">
+				<%= flash[:notice] %>
+			</div>
 			<% end %>
 			<%= yield %>
 		</div>	
-
-	<footer>
+	</div>
+	<div id="footer">
 		<div id="makersacademy-logo">
 			<a href="http://www.makersacademy.com/">
 				<img src="http://www.makersacademy.com/images/logo.png"
 			</a>
 		</div>
 		<div id="technologies">
-		<p>I built this page at <a href="http://www.makersacademy.com/">Makers Academy</a>, a highly selective 12-week coding course in London.</p>
-		<p>This site is built using Ruby, Sinatra, RSpec, Capybara, HTML and CSS.</p>
+			<p>I built this page at <a href="http://www.makersacademy.com/">Makers Academy</a>, a highly selective 12-week coding course in London.</p>
+			<p>This site is built using Ruby, Sinatra, RSpec, Capybara, HTML and CSS.</p>
 		</div>
-	</footer>
+	</div>
 </body>
