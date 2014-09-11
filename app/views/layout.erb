@@ -47,6 +47,7 @@
 			</div>
 			<% end %>
 			<%= yield %>
+			<%= erb :links, locals: { links: @links } %>
 		</div>	
 	</div>
 	<div id="footer">

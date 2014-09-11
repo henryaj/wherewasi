@@ -1,0 +1,5 @@
+<ul> 
+	<% links.each do |link| %> 
+		<li><%= erb :link, locals: { link: link } %></li>
+	<% end %>
+</ul>

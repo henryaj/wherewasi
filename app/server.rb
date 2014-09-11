@@ -18,4 +18,9 @@ require_relative './controllers/users'
 enable :sessions
 set :session_secret, 'super secret'
 enable :show_exceptions
+
+before do 
+	@links = Link.all
+end
+
 # run Sinatra::Application.run!
