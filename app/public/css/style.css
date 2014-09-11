@@ -1,0 +1,53 @@
+body {
+	width:100%;
+}
+
+header { 
+	background-color: black;
+	color:#fff;
+	text-align:right;
+	height: 65px;
+
+}
+
+header div {
+	padding:5px;
+}
+
+header form {
+	margin-top: 20px;
+}
+
+#container {
+	/*width: 5%;*/
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+header form {
+	:0px;
+}
+#logo {
+	float:left;
+	font-family: 'Gloria Hallelujah', cursive;
+	font-size:3em; 
+}
+
+a.button.highlighted{
+	background-color: hotpink;
+	float:left;
+	padding:10px;
+	margin-top:10px;
+	margin-left: 20px;
+	vertical-align: middle;
+	color:#fff;
+	border:2px solid #fff;
+	border-radius:5px;
+	text-decoration: none;
+}
+
+p {}
+
+div#errors {}
+
+div#notice {}
