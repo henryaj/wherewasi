@@ -4,7 +4,7 @@ feature "User browses the list of links" do
 
   before(:each) {
     Link.create(:url => "www.makersacademy.com",
-                :title => "Makers Academy", 
+                :title => "Makers Acodemy", 
                 :tags => [Tag.first_or_create(:text => 'education')])
     Link.create(:url => "https://www.google.com", 
                 :title => "Google", 
@@ -21,12 +21,12 @@ feature "User browses the list of links" do
 
 	scenario "when opening the home page" do
 		visit '/'
-		expect(page).to have_content("Makers Academy")
+		expect(page).to have_content("Makers Acodemy")
 	end
 
     scenario "when opening the home page" do
         visit '/'
-        expect(page).to have_link("Makers Academy", href: "http://www.makersacademy.com")
+        expect(page).to have_link("Makers Acodemy", href: "http://www.makersacademy.com")
     end
 
     scenario "when opening the home page" do
@@ -40,7 +40,7 @@ feature "User browses the list of links" do
 
 	scenario "filtered by a tag" do
 		visit '/tags/search'
-		expect(page).not_to have_content("Makers Academy")
+		expect(page).not_to have_content("Makers Acodemy")
 		expect(page).not_to have_content("Code.org")
 		expect(page).to have_content("Google")
 		expect(page).to have_content("Bing")

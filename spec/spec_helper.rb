@@ -4,6 +4,7 @@ require 'capybara/rspec'
 require 'database_cleaner'
 
 require_relative '../app/server'
+require_relative 'features/helpers/session'
 
 Capybara.app = Sinatra::Application.new
 
