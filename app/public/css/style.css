@@ -31,6 +31,7 @@ header form {
 	float:left;
 	font-family: 'Gloria Hallelujah', cursive;
 	font-size:3em; 
+	margin-right:100px;
 }
 
 a.button.highlighted{

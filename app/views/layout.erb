@@ -9,13 +9,17 @@
 <body>
 	<header>
 		<div id="logo">Where Was I</div>
+		<% if current_user %>
 			<a href="/links/new" class="button highlighted">Add link</a>
+		<% else %>
+			<a href="/users/new" class="button highlighted">Sign up</a>
+			<a href="/sessions/new" class="button highlighted">Sign in</a>
+		<% end %>
 		<div id="user-links">
 			<% if current_user %>
 				<span id="welcome message">
 					Welcome, <%= current_user.email %>
 				</span>
-
 
 				<form id="sign-out" method="post" action="/sessions">
 					<input type="hidden" name="_method" value="delete">
